@@ -155,7 +155,7 @@
    string a;
    int r, s;
    cin >> a >> r >>s ;
-   cout << a ;
+   //cout << a ;
    if(a[0] == 'A'){
      run_a(r,s);
    }else{
