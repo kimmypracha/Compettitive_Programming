@@ -1,30 +1,22 @@
 #include <bits/stdc++.h>
-
+#define rep(i , j , k ) for(int i = j ; i <= k ; ++i)
+#define input() (*istream_iterator<int>(cin))
  using namespace std;
   const int lim = 1e5+10;
   typedef long long int lli;
   lli arr[lim];
   lli gcd(lli a , lli b){  // หา หรม ปกตินั่นแหละ
-    while(b != 0){
-        lli t = a%b ;
-        a = b;
-        b = t;
-    }
-    return a;
+    return (!b)? a : gcd(b , a%b);
   }
   int main(){
-    int n ;
-    scanf("%d",&n);
-    for(int i = 0 ; i < n ;i++){
-        scanf("%lld",&arr[i]);
+    int n  = input();
+    lli tmp ,sum = 0;
+    rep(_i , 0 ,n-1){
+        scanf("%lld",&arr[_i]);
+        tmp = (not _i)? arr[0] : gcd(tmp , arr[_i]);
     }
-    lli tmp = arr[0] ; // Start GCD
-    for(int i = 1 ; i <n  ; i++){
-        tmp = gcd(tmp , arr[i]);
-    }
-    lli sum = 0 ;
-    for(int i = 0 ; i < n ; i++){
-        sum += arr[i]/tmp;
+    rep(_i , 0 , n-1){
+        sum += arr[_i]/tmp;
     }
     printf("%lld",sum);
   }
